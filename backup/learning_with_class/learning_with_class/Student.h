@@ -4,7 +4,7 @@
 
 class Student
 {
-	char grades = 'Z';
+	char grade = 'Z';
 };
 
 #endif
