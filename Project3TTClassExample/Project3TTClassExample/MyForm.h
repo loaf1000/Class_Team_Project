@@ -321,62 +321,49 @@ namespace Project3TTClassExample {
 
 		}
 #pragma endregion
-	///////////GLOBAL VARIABLES////////////
-	array<Person^>^ database;
-	///////////////////////////////////////
+	///////////GLOBAL VARIABLES//////////////
+	ArrayList^ database = gcnew ArrayList;
+	/////////////////////////////////////////
 	private: System::Void buttonSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
 
 
 	}
 	
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-
-		//instantiate a class of type ArrayList
-		database = gcnew array<Person^>(10);
 		Person^ person;
-
-		//we add to the database by instantiating a class in each slot of type "Person"
-		person = gcnew Person("Travers", "Angel", "Simpkin", 80);
-		database[0] = person;
-		person = gcnew Person("Nat", "Teady", "Meadows", 75);
-		database[1] = person;
-		person = gcnew Person("Evelyn", "Braeden", "Bowman", 23);
-		database[2] = person;
-		person = gcnew Person();
-		database[3] = person;
-
-		//legally changing the name
-		database[0]->changeName("Travers", "Angel", "Sanwhich");
-
-		//person-> _firstName = "T"; illegally changing name, why?
-
-		database[0]->changeNickName("T-man"); //legally changing the nickname
-
-		database[1]->_nickname = "Coach"; //what the?...
 		
-		database[2]->_nickname = "Eve"; //how is this possible?
+		person = gcnew Person();
+		person->changeNickName("Gaming Hombre");//legal Nickname change
+		database->Add(person);
+		person = gcnew Person("Roberto", "Rodriguez", "Gonzalez", 33);
+		person->changeNickName("G");
+		database->Add(person);
+		person = gcnew Person("Dennis", "The-Creator-of-C", "Ritchie", 70);
+		database->Add(person);
+		person = gcnew Person("Thomas", "Alva", "Edison", 85);
+		database->Add(person);
 
-		database[3]->_nickname = "Gaming Hombre"; //how is this possible?
+		for (int i = 0; i < database->Count; i++){
 
-		for (int i = 0; i < 4; i++){
-			richTextBoxEcho->Text +=	database[i]->getFirstName() + " " 
-										+ database[i]->getMiddleName() 
-										+ " " + database[i]->getLastName()
-										+ "\n";
+			person = safe_cast<Person^>(database[i]);
+			richTextBoxEcho->Text += person->getLastName() + "\n";
+
 		}
 		
 	}
-private: System::Void buttonSearch_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ nameSearched = (textBoxLastName->Text)->ToLower();
-	Person^ targetPerson;
+	private: System::Void buttonSearch_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ targetName;
+		Person^ target;
+		Person^ somePerson;
 
-	/*for (int i = 0; i < 10; i++){
-		if ((database[i]->getLastName())->ToLower() == nameSearched){
-			MessageBox::Show("Match found!");
+		targetName = textBoxSearch->Text->ToLower();
+
+		for (int i = 0; i < database->Count; i++){
+
+			somePerson = safe_cast<Person^>(database[i]);
+			//if (somePerson-)
+
 		}
-	}*/
-
-	database[10]->getLastName();
-}
+	}
 };
 }
