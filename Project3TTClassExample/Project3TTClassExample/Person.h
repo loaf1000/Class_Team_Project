@@ -30,6 +30,8 @@ public:
 	//////////////////////////////////////////////
 
 	////////////CONSTRUCTORS//////////////////////
+
+	//we "construct" persons with these "function"-looking things
 	Person(){
 		_firstName = "Carlos";
 		_middleName = "Alfredo";
@@ -47,6 +49,14 @@ public:
 		_nickname = "Slick";
 	}
 
+	Person(Person^ person){
+		_firstName = person->getFirstName();
+		_middleName = person->getMiddleName();
+		_lastName = person->getLastName();
+		_age = person->getAge();
+		_nickname = person->_nickname; //huh? no method required? how?
+	}
+
 	//////////////////////////////////////////////
 
 	//////////////METHODS//////////////////////
@@ -55,14 +65,18 @@ public:
 		return _thisPersonsAddress;
 	}
 
-	Void changeThisAddress(Address^& newAddress){
+	Void changeThisAddress(Address^ newAddress){
 		_thisPersonsAddress = newAddress;
 	}
 
-	Void changeName(String^& firstName, String^& middleName, String^& lastName){
+	Void changeName(String^ firstName, String^ middleName, String^ lastName){
 		_firstName = firstName;
 		_middleName = middleName;
 		_lastName = lastName;
+	}
+
+	Void changeNickName(String^ nickname){
+		_nickname = nickname;
 	}
 
 	String^ getFirstName(){
@@ -75,6 +89,10 @@ public:
 
 	String^ getLastName(){
 		return _lastName;
+	}
+
+	String^ getNickname(){
+		return _nickname;
 	}
 
 	int getAge(){

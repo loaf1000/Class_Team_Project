@@ -45,14 +45,27 @@ namespace Project3TTClassExample {
 	private: System::Windows::Forms::Label^  labelMiddleName;
 	private: System::Windows::Forms::Label^  labelLastName;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::RichTextBox^  richTextBox1;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::RichTextBox^  richTextBoxEcho;
+	private: System::Windows::Forms::TextBox^  textBoxStreet;
+	private: System::Windows::Forms::TextBox^  textBoxCity;
+	private: System::Windows::Forms::TextBox^  textBoxState;
+	private: System::Windows::Forms::TextBox^  textBoxZip;
+
+
+
+
+
+	private: System::Windows::Forms::Button^  buttonUpdateName;
+
+	private: System::Windows::Forms::Button^  buttonUpdateAge;
+	private: System::Windows::Forms::Button^  buttonUpdateAddress;
+
+
+	private: System::Windows::Forms::TextBox^  textBoxNickname;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Button^  buttonUpdateNickname;
+	private: System::Windows::Forms::TextBox^  textBoxSearch;
+	private: System::Windows::Forms::Button^  buttonSearch;
 
 
 	protected:
@@ -79,14 +92,19 @@ namespace Project3TTClassExample {
 			this->labelMiddleName = (gcnew System::Windows::Forms::Label());
 			this->labelLastName = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->richTextBoxEcho = (gcnew System::Windows::Forms::RichTextBox());
+			this->textBoxStreet = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCity = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxState = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxZip = (gcnew System::Windows::Forms::TextBox());
+			this->buttonUpdateName = (gcnew System::Windows::Forms::Button());
+			this->buttonUpdateAge = (gcnew System::Windows::Forms::Button());
+			this->buttonUpdateAddress = (gcnew System::Windows::Forms::Button());
+			this->textBoxNickname = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->buttonUpdateNickname = (gcnew System::Windows::Forms::Button());
+			this->textBoxSearch = (gcnew System::Windows::Forms::TextBox());
+			this->buttonSearch = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// buttonSubmit
@@ -108,7 +126,7 @@ namespace Project3TTClassExample {
 			// 
 			// textBoxAge
 			// 
-			this->textBoxAge->Location = System::Drawing::Point(35, 113);
+			this->textBoxAge->Location = System::Drawing::Point(35, 141);
 			this->textBoxAge->Name = L"textBoxAge";
 			this->textBoxAge->Size = System::Drawing::Size(100, 20);
 			this->textBoxAge->TabIndex = 2;
@@ -157,88 +175,135 @@ namespace Project3TTClassExample {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(32, 97);
+			this->label1->Location = System::Drawing::Point(32, 125);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(29, 13);
 			this->label1->TabIndex = 9;
 			this->label1->Text = L"Age:";
 			// 
-			// richTextBox1
+			// richTextBoxEcho
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(582, 48);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(341, 402);
-			this->richTextBox1->TabIndex = 10;
-			this->richTextBox1->Text = L"";
+			this->richTextBoxEcho->Location = System::Drawing::Point(582, 48);
+			this->richTextBoxEcho->Name = L"richTextBoxEcho";
+			this->richTextBoxEcho->Size = System::Drawing::Size(341, 355);
+			this->richTextBoxEcho->TabIndex = 10;
+			this->richTextBoxEcho->Text = L"";
 			// 
-			// textBox1
+			// textBoxStreet
 			// 
-			this->textBox1->Location = System::Drawing::Point(35, 160);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(255, 20);
-			this->textBox1->TabIndex = 11;
+			this->textBoxStreet->Location = System::Drawing::Point(34, 188);
+			this->textBoxStreet->Name = L"textBoxStreet";
+			this->textBoxStreet->Size = System::Drawing::Size(255, 20);
+			this->textBoxStreet->TabIndex = 11;
 			// 
-			// textBox2
+			// textBoxCity
 			// 
-			this->textBox2->Location = System::Drawing::Point(296, 160);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(207, 20);
-			this->textBox2->TabIndex = 12;
+			this->textBoxCity->Location = System::Drawing::Point(295, 188);
+			this->textBoxCity->Name = L"textBoxCity";
+			this->textBoxCity->Size = System::Drawing::Size(207, 20);
+			this->textBoxCity->TabIndex = 12;
 			// 
-			// textBox3
+			// textBoxState
 			// 
-			this->textBox3->Location = System::Drawing::Point(35, 204);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(255, 20);
-			this->textBox3->TabIndex = 13;
+			this->textBoxState->Location = System::Drawing::Point(34, 232);
+			this->textBoxState->Name = L"textBoxState";
+			this->textBoxState->Size = System::Drawing::Size(255, 20);
+			this->textBoxState->TabIndex = 13;
 			// 
-			// textBox4
+			// textBoxZip
 			// 
-			this->textBox4->Location = System::Drawing::Point(296, 204);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(100, 20);
-			this->textBox4->TabIndex = 14;
+			this->textBoxZip->Location = System::Drawing::Point(295, 232);
+			this->textBoxZip->Name = L"textBoxZip";
+			this->textBoxZip->Size = System::Drawing::Size(100, 20);
+			this->textBoxZip->TabIndex = 14;
 			// 
-			// button1
+			// buttonUpdateName
 			// 
-			this->button1->Location = System::Drawing::Point(381, 74);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(122, 23);
-			this->button1->TabIndex = 15;
-			this->button1->Text = L"Update Name";
-			this->button1->UseVisualStyleBackColor = true;
+			this->buttonUpdateName->Location = System::Drawing::Point(381, 74);
+			this->buttonUpdateName->Name = L"buttonUpdateName";
+			this->buttonUpdateName->Size = System::Drawing::Size(122, 23);
+			this->buttonUpdateName->TabIndex = 15;
+			this->buttonUpdateName->Text = L"Update Name";
+			this->buttonUpdateName->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// buttonUpdateAge
 			// 
-			this->button2->Location = System::Drawing::Point(152, 110);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(122, 23);
-			this->button2->TabIndex = 16;
-			this->button2->Text = L"Update Age";
-			this->button2->UseVisualStyleBackColor = true;
+			this->buttonUpdateAge->Location = System::Drawing::Point(151, 138);
+			this->buttonUpdateAge->Name = L"buttonUpdateAge";
+			this->buttonUpdateAge->Size = System::Drawing::Size(122, 23);
+			this->buttonUpdateAge->TabIndex = 16;
+			this->buttonUpdateAge->Text = L"Update Age";
+			this->buttonUpdateAge->UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// buttonUpdateAddress
 			// 
-			this->button3->Location = System::Drawing::Point(402, 201);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(101, 23);
-			this->button3->TabIndex = 17;
-			this->button3->Text = L"Update Address";
-			this->button3->UseVisualStyleBackColor = true;
+			this->buttonUpdateAddress->Location = System::Drawing::Point(402, 229);
+			this->buttonUpdateAddress->Name = L"buttonUpdateAddress";
+			this->buttonUpdateAddress->Size = System::Drawing::Size(101, 23);
+			this->buttonUpdateAddress->TabIndex = 17;
+			this->buttonUpdateAddress->Text = L"Update Address";
+			this->buttonUpdateAddress->UseVisualStyleBackColor = true;
+			// 
+			// textBoxNickname
+			// 
+			this->textBoxNickname->Location = System::Drawing::Point(34, 90);
+			this->textBoxNickname->Name = L"textBoxNickname";
+			this->textBoxNickname->Size = System::Drawing::Size(193, 20);
+			this->textBoxNickname->TabIndex = 18;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(32, 74);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(58, 13);
+			this->label2->TabIndex = 19;
+			this->label2->Text = L"Nickname:";
+			// 
+			// buttonUpdateNickname
+			// 
+			this->buttonUpdateNickname->Location = System::Drawing::Point(234, 90);
+			this->buttonUpdateNickname->Name = L"buttonUpdateNickname";
+			this->buttonUpdateNickname->Size = System::Drawing::Size(122, 23);
+			this->buttonUpdateNickname->TabIndex = 20;
+			this->buttonUpdateNickname->Text = L"Update Nickname";
+			this->buttonUpdateNickname->UseVisualStyleBackColor = true;
+			// 
+			// textBoxSearch
+			// 
+			this->textBoxSearch->Location = System::Drawing::Point(366, 425);
+			this->textBoxSearch->Name = L"textBoxSearch";
+			this->textBoxSearch->Size = System::Drawing::Size(255, 20);
+			this->textBoxSearch->TabIndex = 21;
+			// 
+			// buttonSearch
+			// 
+			this->buttonSearch->Location = System::Drawing::Point(627, 423);
+			this->buttonSearch->Name = L"buttonSearch";
+			this->buttonSearch->Size = System::Drawing::Size(121, 23);
+			this->buttonSearch->TabIndex = 22;
+			this->buttonSearch->Text = L"Search by Last Name";
+			this->buttonSearch->UseVisualStyleBackColor = true;
+			this->buttonSearch->Click += gcnew System::EventHandler(this, &MyForm::buttonSearch_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(955, 475);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->buttonSearch);
+			this->Controls->Add(this->textBoxSearch);
+			this->Controls->Add(this->buttonUpdateNickname);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->textBoxNickname);
+			this->Controls->Add(this->buttonUpdateAddress);
+			this->Controls->Add(this->buttonUpdateAge);
+			this->Controls->Add(this->buttonUpdateName);
+			this->Controls->Add(this->textBoxZip);
+			this->Controls->Add(this->textBoxState);
+			this->Controls->Add(this->textBoxCity);
+			this->Controls->Add(this->textBoxStreet);
+			this->Controls->Add(this->richTextBoxEcho);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->labelLastName);
 			this->Controls->Add(this->labelMiddleName);
@@ -256,13 +321,62 @@ namespace Project3TTClassExample {
 
 		}
 #pragma endregion
+	///////////GLOBAL VARIABLES////////////
+	array<Person^>^ database;
+	///////////////////////////////////////
 	private: System::Void buttonSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		Person^ person = gcnew Person();
 
 	}
 	
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+
+		//instantiate a class of type ArrayList
+		database = gcnew array<Person^>(10);
+		Person^ person;
+
+		//we add to the database by instantiating a class in each slot of type "Person"
+		person = gcnew Person("Travers", "Angel", "Simpkin", 80);
+		database[0] = person;
+		person = gcnew Person("Nat", "Teady", "Meadows", 75);
+		database[1] = person;
+		person = gcnew Person("Evelyn", "Braeden", "Bowman", 23);
+		database[2] = person;
+		person = gcnew Person();
+		database[3] = person;
+
+		//legally changing the name
+		database[0]->changeName("Travers", "Angel", "Sanwhich");
+
+		//person-> _firstName = "T"; illegally changing name, why?
+
+		database[0]->changeNickName("T-man"); //legally changing the nickname
+
+		database[1]->_nickname = "Coach"; //what the?...
+		
+		database[2]->_nickname = "Eve"; //how is this possible?
+
+		database[3]->_nickname = "Gaming Hombre"; //how is this possible?
+
+		for (int i = 0; i < 4; i++){
+			richTextBoxEcho->Text +=	database[i]->getFirstName() + " " 
+										+ database[i]->getMiddleName() 
+										+ " " + database[i]->getLastName()
+										+ "\n";
+		}
+		
 	}
+private: System::Void buttonSearch_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ nameSearched = (textBoxLastName->Text)->ToLower();
+	Person^ targetPerson;
+
+	/*for (int i = 0; i < 10; i++){
+		if ((database[i]->getLastName())->ToLower() == nameSearched){
+			MessageBox::Show("Match found!");
+		}
+	}*/
+
+	database[10]->getLastName();
+}
 };
 }
