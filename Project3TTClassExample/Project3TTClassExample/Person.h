@@ -47,6 +47,8 @@ public:
 		_lastName = lastName;
 		_age = age;
 		_nickname = "Slick";
+		_thisPersonsAddress = gcnew Address("246 Middle-of-No-Where", "AZ", "Phoenix", 12345); //NOTE: no parameters, what will happen?
+
 	}
 
 	Person(Person^ person){
@@ -55,6 +57,8 @@ public:
 		_lastName = person->getLastName();
 		_age = person->getAge();
 		_nickname = person->_nickname; //huh? no method required? how?
+		_thisPersonsAddress = person->getAddress(); //NOTE: no parameters, what will happen?
+
 	}
 
 	//////////////////////////////////////////////
@@ -73,6 +77,10 @@ public:
 		_firstName = firstName;
 		_middleName = middleName;
 		_lastName = lastName;
+	}
+
+	Void changeAge(int age){
+		_age = age;
 	}
 
 	Void changeNickName(String^ nickname){

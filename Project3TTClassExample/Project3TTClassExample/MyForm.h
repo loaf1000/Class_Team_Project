@@ -66,6 +66,10 @@ namespace Project3TTClassExample {
 	private: System::Windows::Forms::Button^  buttonUpdateNickname;
 	private: System::Windows::Forms::TextBox^  textBoxSearch;
 	private: System::Windows::Forms::Button^  buttonSearch;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
 
 
 	protected:
@@ -105,6 +109,10 @@ namespace Project3TTClassExample {
 			this->buttonUpdateNickname = (gcnew System::Windows::Forms::Button());
 			this->textBoxSearch = (gcnew System::Windows::Forms::TextBox());
 			this->buttonSearch = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// buttonSubmit
@@ -225,6 +233,7 @@ namespace Project3TTClassExample {
 			this->buttonUpdateName->TabIndex = 15;
 			this->buttonUpdateName->Text = L"Update Name";
 			this->buttonUpdateName->UseVisualStyleBackColor = true;
+			this->buttonUpdateName->Click += gcnew System::EventHandler(this, &MyForm::buttonUpdateName_Click);
 			// 
 			// buttonUpdateAge
 			// 
@@ -234,6 +243,7 @@ namespace Project3TTClassExample {
 			this->buttonUpdateAge->TabIndex = 16;
 			this->buttonUpdateAge->Text = L"Update Age";
 			this->buttonUpdateAge->UseVisualStyleBackColor = true;
+			this->buttonUpdateAge->Click += gcnew System::EventHandler(this, &MyForm::buttonUpdateAge_Click);
 			// 
 			// buttonUpdateAddress
 			// 
@@ -243,6 +253,7 @@ namespace Project3TTClassExample {
 			this->buttonUpdateAddress->TabIndex = 17;
 			this->buttonUpdateAddress->Text = L"Update Address";
 			this->buttonUpdateAddress->UseVisualStyleBackColor = true;
+			this->buttonUpdateAddress->Click += gcnew System::EventHandler(this, &MyForm::buttonUpdateAddress_Click);
 			// 
 			// textBoxNickname
 			// 
@@ -268,6 +279,7 @@ namespace Project3TTClassExample {
 			this->buttonUpdateNickname->TabIndex = 20;
 			this->buttonUpdateNickname->Text = L"Update Nickname";
 			this->buttonUpdateNickname->UseVisualStyleBackColor = true;
+			this->buttonUpdateNickname->Click += gcnew System::EventHandler(this, &MyForm::buttonUpdateNickname_Click);
 			// 
 			// textBoxSearch
 			// 
@@ -286,11 +298,51 @@ namespace Project3TTClassExample {
 			this->buttonSearch->UseVisualStyleBackColor = true;
 			this->buttonSearch->Click += gcnew System::EventHandler(this, &MyForm::buttonSearch_Click);
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(32, 172);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(48, 13);
+			this->label3->TabIndex = 23;
+			this->label3->Text = L"Address:";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(295, 172);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(27, 13);
+			this->label4->TabIndex = 24;
+			this->label4->Text = L"City:";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(32, 216);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(35, 13);
+			this->label5->TabIndex = 25;
+			this->label5->Text = L"State:";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(295, 216);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(25, 13);
+			this->label6->TabIndex = 26;
+			this->label6->Text = L"Zip:";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(955, 475);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->buttonSearch);
 			this->Controls->Add(this->textBoxSearch);
 			this->Controls->Add(this->buttonUpdateNickname);
@@ -323,8 +375,42 @@ namespace Project3TTClassExample {
 #pragma endregion
 	///////////GLOBAL VARIABLES//////////////
 	ArrayList^ database = gcnew ArrayList;
+
+	int databaseIndex;
+
 	/////////////////////////////////////////
 	private: System::Void buttonSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		int age = 0;
+
+		int zip = 0;
+
+		int::TryParse(textBoxZip->Text, zip);
+
+		int::TryParse(textBoxAge->Text, age);
+
+		Person^ person = gcnew Person(
+			textBoxFirstName->Text, textBoxMiddleName->Text, textBoxLastName->Text, age);
+
+
+		Address^ address = gcnew Address(textBoxStreet->Text, textBoxState->Text, textBoxCity->Text, zip);
+
+		person->changeThisAddress(address);
+
+		person->changeNickName(textBoxNickname->Text);
+
+		database->Add(person);
+
+		richTextBoxEcho->Clear();
+
+		for (int i = 0; i < database->Count; i++){
+
+			person = safe_cast<Person^>(database[i]);
+			richTextBoxEcho->Text += person->getLastName() + "\n";
+
+		}
+
+		MessageBox::Show("New person has been added to the database");
 
 
 	}
@@ -349,6 +435,11 @@ namespace Project3TTClassExample {
 			richTextBoxEcho->Text += person->getLastName() + "\n";
 
 		}
+
+		buttonUpdateName->Visible = false;
+		buttonUpdateAge->Visible = false;
+		buttonUpdateAddress->Visible = false;
+		buttonUpdateNickname->Visible = false;
 		
 	}
 	private: System::Void buttonSearch_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -361,9 +452,70 @@ namespace Project3TTClassExample {
 		for (int i = 0; i < database->Count; i++){
 
 			somePerson = safe_cast<Person^>(database[i]);
-			//if (somePerson-)
+			if ((somePerson->getLastName())->ToLower() == targetName){
+				MessageBox::Show("Person found.");
+
+				textBoxFirstName->Text = somePerson->getFirstName();
+				textBoxMiddleName->Text = somePerson->getMiddleName();
+				textBoxLastName->Text = somePerson->getLastName();
+
+				textBoxNickname->Text = somePerson->getNickname();
+
+				textBoxAge->Text = somePerson->getAge().ToString();
+
+				textBoxStreet->Text = somePerson->getAddress()->getAddress();
+
+				textBoxCity->Text = somePerson->getAddress()->getCity();
+
+				textBoxState->Text = somePerson->getAddress()->getState();
+
+				textBoxZip->Text = somePerson->getAddress()->getZipCode().ToString();
+
+				buttonUpdateName->Visible = true;
+				buttonUpdateAge->Visible = true;
+				buttonUpdateAddress->Visible = true;
+				buttonUpdateNickname->Visible = true;
+
+				databaseIndex = i;
+				break;
+			}
+			else {
+				buttonUpdateName->Visible = false;
+				buttonUpdateAge->Visible = false;
+				buttonUpdateAddress->Visible = false;
+				buttonUpdateNickname->Visible = false;
+			}
 
 		}
 	}
+private: System::Void buttonUpdateName_Click(System::Object^  sender, System::EventArgs^  e) {
+	safe_cast<Person^>(database[databaseIndex])->changeName(textBoxFirstName->Text, textBoxMiddleName->Text, textBoxLastName->Text);
+
+	MessageBox::Show("Name has been changed");
+}
+private: System::Void buttonUpdateNickname_Click(System::Object^  sender, System::EventArgs^  e) {
+	safe_cast<Person^>(database[databaseIndex])->changeNickName(textBoxNickname->Text);
+
+	MessageBox::Show("Nickname has been changed");
+}
+private: System::Void buttonUpdateAge_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	int newAge;
+
+	int::TryParse(textBoxAge->Text, newAge);
+
+	safe_cast<Person^>(database[databaseIndex])->changeAge(newAge);
+
+	MessageBox::Show("Age has been changed");
+}
+private: System::Void buttonUpdateAddress_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	Address^ newAddress = gcnew Address(
+		textBoxStreet->Text, textBoxState->Text, textBoxCity->Text,Convert::ToInt32(textBoxZip->Text));
+
+	safe_cast<Person^>(database[databaseIndex])->changeThisAddress(newAddress);
+
+	MessageBox::Show("Address has been changed");
+}
 };
 }
