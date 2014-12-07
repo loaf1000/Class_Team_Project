@@ -1,5 +1,5 @@
 #include "Address.h"
-
+#include "Wallet.h"
 using namespace System;	//access System classes such as String^
 
 //There are two flavors of classes, ref, and value. If we were to just declare this class
@@ -27,6 +27,7 @@ public:
 
 	//////////////FIELDS//////////////////////////
 	String^ _nickname;
+
 	//////////////////////////////////////////////
 
 	////////////CONSTRUCTORS//////////////////////
