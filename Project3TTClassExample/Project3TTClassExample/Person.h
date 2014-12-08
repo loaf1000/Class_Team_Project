@@ -3,9 +3,8 @@
 using namespace System;	//access System classes such as String^
 
 //There are two flavors of classes, ref, and value. If we were to just declare this class
-//"class Person", is considered a value class. Value classes are useful for CLR prorams.
-//If we declare the class as "ref class Person", Person will then be considered a reference class.
-//Reference classes are useful for GUI environment since we can use classes.
+//"class Person", is considered a value class.
+//Value classes are fields only.
 ref class Person{
 
 public:
