@@ -26,7 +26,7 @@ public:
 
 	//////////////FIELDS//////////////////////////
 	String^ _nickname;
-
+	Wallet^ _wallet;
 	//////////////////////////////////////////////
 
 	////////////CONSTRUCTORS//////////////////////
@@ -39,16 +39,17 @@ public:
 		_age = 24;
 		_thisPersonsAddress = gcnew Address(); //NOTE: no parameters, what will happen?
 		_nickname = "Slick";
+		_wallet = gcnew Wallet();
 	}
 
-	Person(String^ firstName, String^ middleName, String^ lastName, int age){
+	Person(String^ firstName, String^ middleName, String^ lastName, int age, Wallet^ money){
 		_firstName = firstName;
 		_middleName = middleName;
 		_lastName = lastName;
 		_age = age;
 		_nickname = "Slick";
 		_thisPersonsAddress = gcnew Address("246 Middle-of-No-Where", "AZ", "Phoenix", 12345); //NOTE: no parameters, what will happen?
-
+		_wallet = money;
 	}
 
 	Person(Person^ person){
@@ -58,7 +59,7 @@ public:
 		_age = person->getAge();
 		_nickname = person->_nickname; //huh? no method required? how?
 		_thisPersonsAddress = person->getAddress(); //NOTE: no parameters, what will happen?
-
+		_wallet = person->_wallet;
 	}
 
 	//////////////////////////////////////////////
@@ -103,6 +104,9 @@ public:
 		return _nickname;
 	}
 
+	Wallet^ getWallet(){
+		return _wallet;
+	}
 	int getAge(){
 		return _age;
 	}

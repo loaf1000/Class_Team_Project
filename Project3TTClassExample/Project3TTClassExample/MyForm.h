@@ -72,6 +72,8 @@ namespace Project3TTClassExample {
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::Label^  labelWallet;
+	private: System::Windows::Forms::TextBox^  textBoxMoney;
 
 
 	protected:
@@ -115,6 +117,8 @@ namespace Project3TTClassExample {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->labelWallet = (gcnew System::Windows::Forms::Label());
+			this->textBoxMoney = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// buttonSubmit
@@ -336,11 +340,31 @@ namespace Project3TTClassExample {
 			this->label6->TabIndex = 26;
 			this->label6->Text = L"Zip:";
 			// 
+			// labelWallet
+			// 
+			this->labelWallet->AutoSize = true;
+			this->labelWallet->Location = System::Drawing::Point(32, 255);
+			this->labelWallet->Name = L"labelWallet";
+			this->labelWallet->Size = System::Drawing::Size(42, 13);
+			this->labelWallet->TabIndex = 27;
+			this->labelWallet->Text = L"Money:\r\n";
+			this->labelWallet->Visible = false;
+			// 
+			// textBoxMoney
+			// 
+			this->textBoxMoney->Location = System::Drawing::Point(34, 271);
+			this->textBoxMoney->Name = L"textBoxMoney";
+			this->textBoxMoney->Size = System::Drawing::Size(255, 20);
+			this->textBoxMoney->TabIndex = 28;
+			this->textBoxMoney->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(955, 475);
+			this->Controls->Add(this->textBoxMoney);
+			this->Controls->Add(this->labelWallet);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -379,11 +403,16 @@ namespace Project3TTClassExample {
 	ArrayList^ database = gcnew ArrayList;
 
 	int databaseIndex;
-
+	MoneyType cash;
 	/////////////////////////////////////////
 	
 	//this button submits a new Person into the database by constructing a new Person using the info provided
 	private: System::Void buttonSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		cash.quarters = 2;
+		cash.dollarBills = 3;
+
+		Wallet^ wallet = gcnew Wallet(cash);
 
 		int age = 0;
 
@@ -393,8 +422,10 @@ namespace Project3TTClassExample {
 
 		int::TryParse(textBoxAge->Text, age);
 
+		
+
 		Person^ person = gcnew Person(
-			textBoxFirstName->Text, textBoxMiddleName->Text, textBoxLastName->Text, age);
+			textBoxFirstName->Text, textBoxMiddleName->Text, textBoxLastName->Text, age, wallet);
 
 
 		Address^ address = gcnew Address(textBoxStreet->Text, textBoxState->Text, textBoxCity->Text, zip);
@@ -421,17 +452,24 @@ namespace Project3TTClassExample {
 	
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		Person^ person;
-		
-		person = gcnew Person();
-		person->changeNickName("Gaming Hombre");//legal Nickname change
-		database->Add(person);
-		person = gcnew Person("Roberto", "Rodriguez", "Gonzalez", 33);
-		person->changeNickName("G");
-		database->Add(person);
-		person = gcnew Person("Dennis", "The-Creator-of-C", "Ritchie", 70);
-		database->Add(person);
-		person = gcnew Person("Thomas", "Alva", "Edison", 85);
-		database->Add(person);
+	
+		Wallet^ wallet = gcnew Wallet();
+
+		wallet->money.hundredDollarBills = 3;
+		wallet->money.fiftyDollarBills = 1;
+
+
+			person = gcnew Person();
+			person->changeNickName("Gaming Hombre");//legal Nickname change
+			database->Add(person);
+			person = gcnew Person("Roberto", "Rodriguez", "Gonzalez", 33, wallet); 
+			person->changeNickName("G");
+			database->Add(person);
+			person = gcnew Person("Dennis", "The-Creator-of-C", "Ritchie", 70, wallet + wallet); //What happens with the wallet?
+			database->Add(person);
+			person = gcnew Person("Thomas", "Alva", "Edison", 85, wallet + wallet + wallet); // What about this Wallet?
+			database->Add(person);
+
 
 		for (int i = 0; i < database->Count; i++){
 
@@ -448,8 +486,10 @@ namespace Project3TTClassExample {
 	}
 	private: System::Void buttonSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ targetName;
-		Person^ target;
 		Person^ somePerson;
+
+		labelWallet->Visible = true;
+		textBoxMoney->Visible = true;
 
 		targetName = textBoxSearch->Text->ToLower();
 
@@ -474,6 +514,8 @@ namespace Project3TTClassExample {
 				textBoxState->Text = somePerson->getAddress()->getState();
 
 				textBoxZip->Text = somePerson->getAddress()->getZipCode().ToString();
+
+				textBoxMoney->Text ="$" + somePerson->_wallet->getValueOfWallet().ToString();
 
 				buttonUpdateName->Visible = true;
 				buttonUpdateAge->Visible = true;

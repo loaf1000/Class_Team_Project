@@ -97,18 +97,15 @@ public:
 	
 	double getValueOfWallet()
 	{
-		return _valueOfWallet;
+		return (.01 * money.pennies) + (.05 * money.nickels) + (.1 * money.dimes) + (.25 * money.quarters) + (1 * money.dollarBills)
+			+ (2 * money.twoDollarBills) + (5 * money.fiveDollarBills) + (10 * money.tenDollarBills) + (20 * money.twentyDollarBills)
+			+ (50 * money.fiftyDollarBills) + (100 * money.hundredDollarBills);
 	}
 
 	//Declare an operator overload within the class
 	//Format for the + operator:
 	// ReturnType operator+(parameter) 
 	Wallet^ operator+(Wallet^ secondWallet);
-
-private:
-	double _valueOfWallet = (.01 * money.pennies) + (.05 * money.nickels) + (.1 * money.dimes) + (.25 * money.quarters) + (1 * money.dollarBills)
-		+ (2 * money.twoDollarBills) + (5 * money.fiveDollarBills) + (10 * money.tenDollarBills) + (20 * money.twentyDollarBills)
-		+ (50 * money.fiftyDollarBills) + (100 * money.hundredDollarBills);
 };
 
 
@@ -124,7 +121,7 @@ Wallet^ Wallet::operator+(Wallet^ secondWallet)
 	//
 	////////////////////////////////////////////////////////////////////
 
-	Wallet^ tempWallet;
+	Wallet^ tempWallet = gcnew Wallet();
 
 	////////////////////////////////////////////////////////////////////
 
