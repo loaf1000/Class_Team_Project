@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Person.h"	//include the header file that contains our class
+#include "Person.h"	//include the header file that contains our class in order to have access to it.
 
 namespace Project3TTClassExample {
 
@@ -14,6 +14,8 @@ namespace Project3TTClassExample {
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
+	
+	//wait... isn't this a class?
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -379,6 +381,8 @@ namespace Project3TTClassExample {
 	int databaseIndex;
 
 	/////////////////////////////////////////
+	
+	//this button submits a new Person into the database by constructing a new Person using the info provided
 	private: System::Void buttonSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		int age = 0;
